@@ -9,7 +9,7 @@ from sqlalchemy import (
 from app.config.db import metadata
 
 
-Preprocessing = Table(
+Preprocessing_Pasal = Table(
     'preprocessing_pasal',
     metadata,
     Column('id_prep_pasal', Integer, primary_key=True),
