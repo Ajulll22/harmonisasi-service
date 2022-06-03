@@ -14,5 +14,5 @@ Preprocessing_Pasal = Table(
     metadata,
     Column('id_prep_pasal', Integer, primary_key=True),
     Column('id_uu_pasal', Integer, ForeignKey('uu_pasal_html.id')),
-    Column('uud_detail', Text)
+    Column('uud_detail', Text, nullable=True)
 )
