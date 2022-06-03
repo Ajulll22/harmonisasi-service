@@ -3,7 +3,7 @@ from typing import Any
 
 
 class BaseResponseModel(BaseModel):
-    data: Any = {}
+    value: Any = {}
     meta: dict = {}
     success: bool = True
     code: int = 200
