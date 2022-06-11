@@ -21,6 +21,7 @@ from gensim.models import TfidfModel
 from gensim.similarities import SparseTermSimilarityMatrix
 from gensim.similarities import SoftCosineSimilarity
 import os
+from itertools import groupby
 
 
 class PasalRequest(BaseModel):
@@ -33,28 +34,19 @@ class HarmonisasiPasalResponse(BaseResponseModel):
             'example': {
                 'value': [
                     {
-                        'id': 10,
-                        'presentase': 67.1,
                         'id_tbl_uu': 192,
                         'uu': 'UU No 8 Tahun 2017',
+                        'jumlah': 1,
                         'tentang': 'Perubahan Atas Undang-Undang Nomor 18 Tahun 2016 Tentang Anggaran Pendapatan Dan Belanja Negara Tahun Anggaran 2017',
-                        'uud_id': 'pasal~11 ayat~14',
-                        'uud_content': 'Alokasi Dana Transfer Umum sebagaimana dimaksud pada ayat (1) digunakan sesuai dengan kebutuhan dan prioritas daerah.',
                         'file_arsip': '123123.pdf',
                         'status': 1,
-                        'id_kategori': 3
-                    },
-                    {
-                        'id': 20,
-                        'presentase': 52.1,
-                        'id_tbl_uu': 192,
-                        'uu': 'UU No 8 Tahun 2017',
-                        'tentang': 'Perubahan Atas Undang-Undang Nomor 18 Tahun 2016 Tentang Anggaran Pendapatan Dan Belanja Negara Tahun Anggaran 2017',
-                        'uud_id': 'pasal~16 ayat~2',
-                        'uud_content': 'Anggaran untuk Program Pengelolaan Subsidi sebagaimana dimaksud pada ayat (1) digunakan secara tepat sasaran.',
-                        'file_arsip': '123123.pdf',
-                        'status': 1,
-                        'id_kategori': 3
+                        'id_kategori': 3,
+                        'pasal': [
+                            {
+                                'presentase': 45.3,
+
+                            }
+                        ]
                     },
                 ],
                 'meta': {},
@@ -196,6 +188,31 @@ async def harmonisasi_pasal(data: PasalRequest):
             }
             array.append(tmp_dict)
 
+    res = []
+    def key_func(k): return k['id_tbl_uu']
+
+    for k, g in groupby(sorted(array, key=key_func), key=key_func):
+        obj = {'id_tbl_uu': k, 'uu': '',
+               'jumlah': 0, 'tentang': '', 'file_arsip': '', 'status': '', 'id_kategori': '', 'pasal': []}
+        for group in g:
+            if not obj['uu']:
+                obj['uu'] = group['uu']
+                obj['tentang'] = group['tentang']
+                obj['file_arsip'] = group['file_arsip']
+                obj['status'] = group['status']
+                obj['id_kategori'] = group['id_kategori']
+            obj['jumlah'] = obj['jumlah'] + 1
+            pasal = {
+                'id': group['id'],
+                'presentase': group['presentase'],
+                'uud_id': group['uud_id'],
+                'uud_content': group['uud_content']
+            }
+            obj['pasal'].append(pasal)
+        res.append(obj)
+
+    hasil = sorted(res, key=lambda res: res['jumlah'], reverse=True)
+
     return HarmonisasiPasalResponse(
-        value=array
+        value=hasil
     )
