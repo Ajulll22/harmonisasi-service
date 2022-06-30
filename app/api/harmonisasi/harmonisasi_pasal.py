@@ -34,18 +34,26 @@ class HarmonisasiPasalResponse(BaseResponseModel):
             'example': {
                 'value': [
                     {
-                        'id_tbl_uu': 192,
-                        'uu': 'UU No 8 Tahun 2017',
-                        'jumlah': 1,
-                        'tentang': 'Perubahan Atas Undang-Undang Nomor 18 Tahun 2016 Tentang Anggaran Pendapatan Dan Belanja Negara Tahun Anggaran 2017',
-                        'file_arsip': '123123.pdf',
-                        'status': 1,
-                        'id_kategori': 3,
-                        'pasal': [
+                        "id_tbl_uu": 203,
+                        "uu": "UU No 19 Tahun 2016",
+                        "jumlah": 2,
+                        "tentang": " Perubahan Atas Undang-undang Nomor 11 Tahun 2008 Tentang Informasi Dan Transaksi Elektronik",
+                        "file_arsip": "NewArsip220212062547.pdf",
+                        "status": 3,
+                        "id_kategori": 18,
+                        "pasal": [
                             {
-                                'presentase': 45.3,
-
-                            }
+                                "id": 5796,
+                                "presentase": 68.041,
+                                "uud_id": "pasal~1 angka~7",
+                                "uud_content": "Jaringan Sistem Elektronik adalah terhubungnya dua Sistem Elektronik atau lebih, yang bersifat tertutup ataupun terbuka."
+                            },
+                            {
+                                "id": 5815,
+                                "presentase": 53.333,
+                                "uud_id": "pasal~26 ayat~1",
+                                "uud_content": "Kecuali ditentukan lain oleh peraturan perundang- undangan, penggunaan setiap informasi melalui media elektronik yang menyangkut data pribadi seseorang harus dilakukan atas persetujuan Orang yang bersangkutan."
+                            },
                         ]
                     },
                 ],
