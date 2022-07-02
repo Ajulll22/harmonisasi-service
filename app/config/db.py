@@ -1,9 +1,10 @@
 from sqlalchemy import MetaData, create_engine
 from databases import Database
 
-DATABASE_URL = 'mysql://root:@localhost/omnilaw'
+from app.config import config
 
-db_engine = create_engine(DATABASE_URL)
+
+db_engine = create_engine(config.DB)
 metadata = MetaData()
 
-database = Database(DATABASE_URL)
+database = Database(config.DB)
