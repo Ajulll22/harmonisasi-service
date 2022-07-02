@@ -97,9 +97,11 @@ async def tambah_uu(data: TambahUURequest):
 
     query = Preprocessing.insert().values(id_tbl_uu=data.id_tbl_uu, content=content)
     await database.execute(query)
+    res = []
+
+    hasil = {'text': Content}
+    res.append(hasil)
 
     return TambahUUResponse(
-        value={
-            'text': Content
-        }
+        value=res
     )
