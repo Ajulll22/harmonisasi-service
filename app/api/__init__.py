@@ -32,7 +32,7 @@ api_router.add_api_route('/v1/harmonisasi/detail/{id}', show_detail,
 api_router.add_api_route('/v1/preprocessing_bulk', tambah_bulk,
                          methods=['POST'], tags=['Preprocessing'], status_code=201, description='Preprocessing pasal dengan request dict')
 api_router.add_api_route('/v1/preprocessing_uu', tambah_uu,
-                         methods=['POST'], tags=['Preprocessing'], response_model=TambahUUResponse, status_code=201, description='Preprocessing UU dan mengembalikan hasil ekstraksi text full')
+                         methods=['POST'], tags=['Preprocessing'], status_code=201, description='Preprocessing UU dan mengembalikan hasil ekstraksi text full')
 
 api_router.add_api_route('/v1/draft/pasal', keyword_pasal,
                          methods=['POST'], tags=['Draft'], response_model=DraftPasalResponse, description='Drafting dengan teknik harmonisasi menggunakan search key')
