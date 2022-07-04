@@ -7,6 +7,7 @@ from app.api.harmonisasi.show_detail import show_detail, DetailResponse
 
 from app.api.preprocessing.tambah_bulk import tambah_bulk
 from app.api.preprocessing.tambah_uu import tambah_uu, TambahUUResponse
+from app.api.preprocessing.ubah_pasal import ubah_pasal, UbahPasalResponse
 
 from app.api.draft.keyword_pasal import keyword_pasal, DraftPasalResponse
 
@@ -33,6 +34,8 @@ api_router.add_api_route('/v1/preprocessing_bulk', tambah_bulk,
                          methods=['POST'], tags=['Preprocessing'], status_code=201, description='Preprocessing pasal dengan request dict')
 api_router.add_api_route('/v1/preprocessing_uu', tambah_uu,
                          methods=['POST'], tags=['Preprocessing'], status_code=201, description='Preprocessing UU dan mengembalikan hasil ekstraksi text full')
+api_router.add_api_route('/v1/preprocessing/pasal', ubah_pasal,
+                         methods=['PUT'], tags=['Preprocessing'], status_code=204, description='Preprocessing Pasal yang diubah')
 
 api_router.add_api_route('/v1/draft/pasal', keyword_pasal,
                          methods=['POST'], tags=['Draft'], response_model=DraftPasalResponse, description='Drafting dengan teknik harmonisasi menggunakan search key')
