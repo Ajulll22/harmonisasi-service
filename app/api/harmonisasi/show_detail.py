@@ -71,7 +71,7 @@ async def show_detail(id: int):
     UU_Stoprem = pd.read_sql_query(uu_pasal, con=db_engine)
 
     if UU_Stoprem.empty:
-        raise HTTPException(400, 'Data tidak ditemukan')
+        raise HTTPException(404, 'Data tidak ditemukan')
 
     UU_Dokumen = []
 
